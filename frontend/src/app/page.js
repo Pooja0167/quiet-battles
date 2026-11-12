@@ -1,69 +1,123 @@
-import Image from "next/image";
+import Link from "next/link";
+
+const collections = [
+  {
+    slug: "the-gentle-armor",
+    series: "SERIES 01",
+    title: "THE GENTLE ARMOR™",
+    text: "Soft on the surface. Strong underneath. Five chapters about the battles no one sees.",
+    available: true,
+  },
+  {
+    series: "SERIES 02",
+    title: "COMING SOON",
+    text: "The next chapter of the archive is being written.",
+    available: false,
+  },
+  {
+    series: "SERIES 03",
+    title: "COMING SOON",
+    text: "Some stories take time to be told.",
+    available: false,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main>
+      {/* HERO SECTION */}
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6 text-center">
+        <div className="absolute inset-0 bg-gradient-to-b from-ink via-[#14110d] to-ink" />
+        <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ember/10 blur-[140px]" />
+
+        <div className="relative z-10 max-w-4xl">
+          <p className="mb-8 text-xs uppercase tracking-[0.5em] text-steel">
+            QUIET BATTLES™
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          <h1 className="font-display text-5xl font-light leading-tight tracking-widest md:text-8xl">
+            WEAR YOUR BATTLES
+          </h1>
+
+          <p className="mx-auto mt-8 max-w-xl text-base text-steel md:text-lg">
+            Every scar is a story. Every story deserves to be worn.
+          </p>
+
+          <Link
+            href="/archive"
+            className="mt-12 inline-block border border-ember px-10 py-4 text-xs uppercase tracking-[0.3em] text-ember transition-colors hover:bg-ember hover:text-ink"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Enter The Archive
+          </Link>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* BRAND INTRODUCTION */}
+      <section className="mx-auto max-w-3xl px-6 py-32 text-center">
+        <p className="mb-6 text-xs uppercase tracking-[0.5em] text-ember">
+          The Idea
+        </p>
+
+        <h2 className="font-display text-3xl font-light leading-relaxed md:text-5xl">
+          Not every battle is loud.
+        </h2>
+
+        <p className="mt-10 text-base leading-loose text-steel md:text-lg">
+          QUIET BATTLES™ is built for the fights fought in silence: the
+          doubts, the recoveries, the small victories no one applauds. Each
+          piece we make carries a story, and each story is a chapter in
+          The Archive. Wear it not as a statement, but as quiet armor.
+        </p>
+      </section>
+
+      {/* FEATURED COLLECTIONS */}
+      <section className="mx-auto max-w-7xl px-6 pb-32">
+        <div className="mb-16 text-center">
+          <p className="mb-4 text-xs uppercase tracking-[0.5em] text-ember">
+            The Archive
+          </p>
+          <h2 className="font-display text-3xl font-light md:text-5xl">
+            Featured Collections
+          </h2>
+        </div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {collections.map((item) => {
+            const card = (
+              <div
+                className={`group flex h-full min-h-[360px] flex-col justify-end border p-8 transition-colors ${
+                  item.available
+                    ? "border-steel/30 bg-gradient-to-b from-[#14110d] to-ink hover:border-ember"
+                    : "border-steel/10 opacity-50"
+                }`}
+              >
+                <p className="mb-3 text-xs uppercase tracking-[0.4em] text-ember">
+                  {item.series}
+                </p>
+                <h3 className="font-display text-2xl tracking-widest">
+                  {item.title}
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-steel">
+                  {item.text}
+                </p>
+                {item.available && (
+                  <span className="mt-6 text-xs uppercase tracking-[0.3em] text-bone transition-colors group-hover:text-ember">
+                    Explore →
+                  </span>
+                )}
+              </div>
+            );
+
+            return item.available ? (
+              <Link key={item.title + item.series} href={`/archive/${item.slug}`}>
+                {card}
+              </Link>
+            ) : (
+              <div key={item.title + item.series}>{card}</div>
+            );
+          })}
+        </div>
+      </section>
+    </main>
   );
 }
