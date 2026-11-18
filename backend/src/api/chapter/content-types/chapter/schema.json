@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "chapters",
+  "info": {
+    "singularName": "chapter",
+    "pluralName": "chapters",
+    "displayName": "Chapter"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "number": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "quote": {
+      "type": "text"
+    },
+    "story": {
+      "type": "text"
+    },
+    "mainImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "series": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::series.series"
+    },
+    "product": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::product.product"
+    },
+    "highlights": {
+      "type": "component",
+      "component": "chapter.highlight",
+      "repeatable": true
+    }
+  }
+}

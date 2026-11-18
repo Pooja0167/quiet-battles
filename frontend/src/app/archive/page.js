@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { seriesList } from "../../data/content";
+import { getAllSeries } from "../../lib/strapi";
 
 export const metadata = {
   title: "The Archive | QUIET BATTLES™",
   description: "Every series is a collection of stories. Explore The Archive.",
 };
 
-export default function ArchivePage() {
+export default async function ArchivePage() {
+  const seriesList = await getAllSeries();
+
   return (
     <main className="mx-auto max-w-5xl px-6 pb-32 pt-40">
       <p className="mb-4 text-xs uppercase tracking-[0.5em] text-ember">

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useCart } from "./CartContext";
 
 const links = [
   { href: "/", label: "Home" },
@@ -11,6 +12,13 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const { count } = useCart();
+
+  function labelFor(link) {
+    return link.href === "/cart" && count > 0
+      ? `${link.label} (${count})`
+      : link.label;
+  }
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 bg-ink/70 backdrop-blur-md">
@@ -30,7 +38,7 @@ export default function Navbar() {
                 href={link.href}
                 className="transition-colors hover:text-ember"
               >
-                {link.label}
+                {labelFor(link)}
               </Link>
             </li>
           ))}
@@ -56,7 +64,7 @@ export default function Navbar() {
                 onClick={() => setOpen(false)}
                 className="hover:text-ember"
               >
-                {link.label}
+                {labelFor(link)}
               </Link>
             </li>
           ))}

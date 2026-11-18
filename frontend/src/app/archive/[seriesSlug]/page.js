@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getSeries } from "../../../data/content";
+import { getSeries } from "../../../lib/strapi";
 
 export async function generateMetadata({ params }) {
   const { seriesSlug } = await params;
-  const series = getSeries(seriesSlug);
+  const series = await getSeries(seriesSlug);
   if (!series) return {};
   return {
     title: `${series.title} | QUIET BATTLES™`,
@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
 
 export default async function SeriesPage({ params }) {
   const { seriesSlug } = await params;
-  const series = getSeries(seriesSlug);
+  const series = await getSeries(seriesSlug);
 
   if (!series) notFound();
 
