@@ -119,3 +119,9 @@ export async function getProduct(slug) {
   if (!data || data.length === 0) return null;
   return mapProduct(data[0]);
 }
+export async function getAllProducts() {
+  const data = await fetchStrapi(
+    "/products?populate=images&pagination[pageSize]=100"
+  );
+  return data.map(mapProduct);
+}
