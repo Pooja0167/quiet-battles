@@ -9,7 +9,8 @@ const nextConfig = {
     },
   },
   images: {
-    dangerouslyAllowLocalIP: process.env.NODE_ENV !== "production",
+    // Local testing me localhost se photo allow, Vercel pe band
+    dangerouslyAllowLocalIP: !process.env.VERCEL,
     remotePatterns: [
       {
         protocol: "http",
