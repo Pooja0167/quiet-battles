@@ -1,0 +1,123 @@
+{
+  "series": [
+    {
+      "slug": "the-gentle-armor",
+      "number": "SERIES 01",
+      "title": "THE GENTLE ARMOR™",
+      "tagline": "Soft on the surface. Strong underneath.",
+      "description": "Five chapters about the battles no one sees. Each piece is armor made gentle: worn close, carried quietly.",
+      "chapters": [
+        {
+          "slug": "the-first-silence",
+          "number": "CHAPTER 01",
+          "title": "The First Silence",
+          "summary": "Where Every quiet battle begins.",
+          "quote": "Some battles begin without a sound.",
+          "mainImage": "/snapshot-images/large_photo1_fb52086a0b.jpg",
+          "story": [
+            "It starts small. A thought you do not say out loud. A morning you get through without telling anyone how heavy it felt.",
+            "Silence is not weakness. It is where most of us learn to be strong: alone, patient, and unseen.",
+            "This chapter is for the first quiet moment you chose to keep going. It was not dramatic. No one clapped. But it was the beginning of everything.",
+            "So we made something to wear for that moment: soft enough to hold you, strong enough to remind you that you already started."
+          ],
+          "highlights": [
+            {
+              "label": "The Feeling",
+              "text": "Calm on the outside, a storm held gently within.",
+              "image": "/snapshot-images/large_photo2_5fd7a281f7.jpg"
+            },
+            {
+              "label": "The Fabric",
+              "text": "Heavyweight, brushed soft. Built to feel like a held breath.",
+              "image": "/snapshot-images/large_photo3_37532c1089.jpg"
+            }
+          ],
+          "productSlug": "first-silence-hoodie"
+        },
+        {
+          "slug": "held-together",
+          "number": "CHAPTER 02",
+          "title": "Held Together",
+          "summary": "On the strength found in staying whole.",
+          "quote": "Being whole is not the absence of cracks.",
+          "mainImage": "/snapshot-images/large_photo9_28b94acd9c.jpg",
+          "story": [
+            "Some days the only thing you do is hold yourself together. No one sees the effort. It looks like an ordinary morning.",
+            "Strength is not always loud or visible. Often it is the quiet decision to stay in one piece when everything asks you to come apart.",
+            "This chapter honours that decision. We made it with seams that stay close and a fit that holds you, so you can carry the day without breaking."
+          ],
+          "highlights": null,
+          "productSlug": null
+        },
+        {
+          "slug": "thread-by-thread",
+          "number": "CHAPTER 03",
+          "title": "Thread by Thread",
+          "summary": "Healing happens slowly, one stitch at a time.",
+          "quote": "Healing is slow, and slow is still moving.",
+          "mainImage": "/snapshot-images/large_photo11_f9c710a146.jpg",
+          "story": [
+            "Nobody heals all at once. Recovery happens in small, almost invisible movements, like a seam closing one stitch at a time.",
+            "Some days you will move forward. Some days you will only stay still. Both count, because both keep the thread from breaking.",
+            "This chapter is for the patient part of every battle: careful hands, small progress, and the quiet belief that you are being mended."
+          ],
+          "highlights": null,
+          "productSlug": null
+        },
+        {
+          "slug": "the-weight-you-carry",
+          "number": "CHAPTER 04",
+          "title": "The Weight You Carry",
+          "summary": "What we hold, we learn to wear lightly.",
+          "quote": "What we carry becomes part of how we stand.",
+          "mainImage": "/snapshot-images/large_photo33_945bbe0033.jpg",
+          "story": [
+            "Everyone carries something no one else can see: a worry, a memory, a responsibility that never quite sets down.",
+            "The weight does not disappear. We learn to carry it differently, to balance it, to let it become part of how we stand.",
+            "This chapter is about carrying it lightly. We designed it to rest on the shoulders gently, so strength never has to feel heavy."
+          ],
+          "highlights": null,
+          "productSlug": null
+        },
+        {
+          "slug": "still-standing",
+          "number": "CHAPTER 05",
+          "title": "Still Standing",
+          "summary": "The quiet victory of simply continuing.",
+          "quote": "Some victories are just a morning you did not give up on.",
+          "mainImage": "/snapshot-images/large_photo22_71ed4509eb.jpg",
+          "story": [
+            "At the end of every long battle there is rarely a moment of triumph. There is only the next morning, and you are still here.",
+            "That is its own kind of victory: quiet, unannounced and entirely yours.",
+            "This chapter closes the series with a simple truth. You kept going. You are still standing, and that is enough."
+          ],
+          "highlights": null,
+          "productSlug": null
+        }
+      ]
+    }
+  ],
+  "products": [
+    {
+      "slug": "first-silence-hoodie",
+      "name": "THE FIRST SILENCE HOODIE",
+      "price": 3599,
+      "sizes": [
+        "S",
+        "M",
+        "L",
+        "XL"
+      ],
+      "images": [
+        "/snapshot-images/large_photo1_33b40b16bd.jpg",
+        "/snapshot-images/large_photo4_baa35990f0.jpg",
+        "/snapshot-images/large_photo5_bc3b3a468b.jpg",
+        "/snapshot-images/large_photo6_c5d60902f0.jpg",
+        "/snapshot-images/large_photo7_a6ee9fc88a.jpg",
+        "/snapshot-images/large_photo8_e20fea681b.jpg",
+        "/snapshot-images/large_photo9_458d672f42.jpg"
+      ],
+      "description": "A heavyweight hoodie made for the days you carry more than you say. Soft inside, structured outside: gentle armor you can wear anywhere."
+    }
+  ]
+}

@@ -1,8 +1,14 @@
+import snapshot from "../data/snapshot.json";
+
 const STRAPI_URL = process.env.STRAPI_URL || "http://localhost:1337";
+const USE_SNAPSHOT = process.env.USE_SNAPSHOT === "1";
 
 function mediaUrl(media) {
-  if (!media || !media.url) return null;
-  return media.url.startsWith("http") ? media.url : `${STRAPI_URL}${media.url}`;
+  if (!media) return null;
+  const file =
+    (media.formats && (media.formats.large || media.formats.medium)) || media;
+  if (!file.url) return null;
+  return file.url.startsWith("http") ? file.url : `${STRAPI_URL}${file.url}`;
 }
 
 async function fetchStrapi(path) {
@@ -65,6 +71,8 @@ function mapProduct(p) {
 }
 
 export async function getAllSeries() {
+  if (USE_SNAPSHOT) return snapshot.series;
+
   const [seriesData, chapterData] = await Promise.all([
     fetchStrapi("/all-series"),
     fetchStrapi(
@@ -81,6 +89,10 @@ export async function getAllSeries() {
 }
 
 export async function getSeries(slug) {
+  if (USE_SNAPSHOT) {
+    return snapshot.series.find((s) => s.slug === slug) || null;
+  }
+
   const seriesData = await fetchStrapi(
     `/all-series?filters[slug][$eq]=${encodeURIComponent(slug)}`
   );
@@ -96,6 +108,14 @@ export async function getSeries(slug) {
 }
 
 export async function getChapter(seriesSlug, chapterSlug) {
+  if (USE_SNAPSHOT) {
+    const series = snapshot.series.find((s) => s.slug === seriesSlug);
+    if (!series) return null;
+    const index = series.chapters.findIndex((c) => c.slug === chapterSlug);
+    if (index === -1) return null;
+    return { series, chapter: series.chapters[index], index };
+  }
+
   const series = await getSeries(seriesSlug);
   if (!series) return null;
 
@@ -113,13 +133,20 @@ export async function getChapter(seriesSlug, chapterSlug) {
 }
 
 export async function getProduct(slug) {
+  if (USE_SNAPSHOT) {
+    return snapshot.products.find((p) => p.slug === slug) || null;
+  }
+
   const data = await fetchStrapi(
     `/products?filters[slug][$eq]=${encodeURIComponent(slug)}&populate=images`
   );
   if (!data || data.length === 0) return null;
   return mapProduct(data[0]);
 }
+
 export async function getAllProducts() {
+  if (USE_SNAPSHOT) return snapshot.products;
+
   const data = await fetchStrapi(
     "/products?populate=images&pagination[pageSize]=100"
   );
