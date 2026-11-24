@@ -1,33 +1,40 @@
 const path = require('path');
 
-function cleanDatabaseUrl(raw) {
-  if (!raw) return undefined;
-  const match = String(raw).match(/postgres(?:ql)?:\/\/[^\s'"]+/);
-  if (!match) return undefined;
-  return match[0].replace(/[?&]channel_binding=[^&]*/g, '');
-}
+const clean = (value) =>
+  String(value || '')
+    .trim()
+    .replace(/^['"]+|['"]+$/g, '');
 
 module.exports = ({ env }) => {
   const client = env('DATABASE_CLIENT', 'sqlite');
 
   if (client === 'postgres') {
-    const url = cleanDatabaseUrl(env('DATABASE_URL'));
-    if (!url) {
-      throw new Error(
-        'DATABASE_URL is missing or does not contain a postgresql:// URL'
-      );
+    const host = clean(env('DB_HOST')).replace('-pooler', '');
+    const database = clean(env('DB_NAME'));
+    const user = clean(env('DB_USER'));
+    const password = clean(env('DB_PASSWORD'));
+
+    const missing = [];
+    if (!host) missing.push('DB_HOST');
+    if (!database) missing.push('DB_NAME');
+    if (!user) missing.push('DB_USER');
+    if (!password) missing.push('DB_PASSWORD');
+
+    if (missing.length) {
+      throw new Error('Missing in Render Environment: ' + missing.join(', '));
     }
-    try {
-      console.log('[db] connecting to host:', new URL(url).host);
-    } catch (e) {
-      console.log('[db] could not read host from DATABASE_URL');
-    }
+
+    console.log('[db] connecting to host:', host, '| database:', database);
 
     return {
       connection: {
         client: 'postgres',
         connection: {
-          connectionString: url,
+          host,
+          port: 5432,
+          database,
+          user,
+          password,
           ssl: { rejectUnauthorized: false },
         },
         pool: { min: 0, max: 10 },
