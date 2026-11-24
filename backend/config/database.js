@@ -1,32 +1,52 @@
 const path = require('path');
 
+function cleanDatabaseUrl(raw) {
+  if (!raw) return undefined;
+  const match = String(raw).match(/postgres(?:ql)?:\/\/[^\s'"]+/);
+  if (!match) return undefined;
+  return match[0].replace(/[?&]channel_binding=[^&]*/g, '');
+}
+
 module.exports = ({ env }) => {
   const client = env('DATABASE_CLIENT', 'sqlite');
 
-  const connections = {
-    postgres: {
+  if (client === 'postgres') {
+    const url = cleanDatabaseUrl(env('DATABASE_URL'));
+    if (!url) {
+      throw new Error(
+        'DATABASE_URL is missing or does not contain a postgresql:// URL'
+      );
+    }
+    try {
+      console.log('[db] connecting to host:', new URL(url).host);
+    } catch (e) {
+      console.log('[db] could not read host from DATABASE_URL');
+    }
+
+    return {
       connection: {
-        connectionString: env('DATABASE_URL'),
-        ssl: env.bool('DATABASE_SSL', true) && {
-          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', false),
+        client: 'postgres',
+        connection: {
+          connectionString: url,
+          ssl: { rejectUnauthorized: false },
         },
-        schema: env('DATABASE_SCHEMA', 'public'),
+        pool: { min: 0, max: 10 },
+        acquireConnectionTimeout: 60000,
       },
-      pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
-    },
-    sqlite: {
-      connection: {
-        filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
-      },
-      useNullAsDefault: true,
-    },
-  };
+    };
+  }
 
   return {
     connection: {
-      client,
-      ...connections[client],
-      acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
+      client: 'sqlite',
+      connection: {
+        filename: path.join(
+          __dirname,
+          '..',
+          env('DATABASE_FILENAME', '.tmp/data.db')
+        ),
+      },
+      useNullAsDefault: true,
     },
   };
 };
